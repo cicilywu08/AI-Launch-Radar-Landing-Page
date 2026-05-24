@@ -623,7 +623,7 @@ function Footer({ narrow }) {
         position: "relative",
         zIndex: 1,
         borderTop: "1px solid rgba(9,30,66,0.07)",
-        padding: narrow ? "36px 20px 40px" : "48px 48px 52px",
+        padding: narrow ? "24px 20px 28px" : "28px 48px 32px",
         maxWidth: 1100,
         margin: "0 auto",
         display: "flex",
@@ -675,7 +675,7 @@ function Footer({ narrow }) {
             color: "rgba(37,56,88,0.4)",
           }}
         >
-          Want to be added to the builder list?
+          Know a builder I should track? Have feedback?
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <a
