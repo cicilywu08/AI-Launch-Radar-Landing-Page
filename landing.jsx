@@ -52,6 +52,7 @@ function LandingPage({ sample, t }) {
         showFade={t.showPreviewFade}
         ctaText={t.ctaText}
       />
+      <Footer narrow={narrow} />
     </div>
   );
 }
@@ -611,6 +612,135 @@ function PreviewSection({ narrow, sample, previewHeight = 1400, showFade = true,
         </div>
       </div>
     </section>
+  );
+}
+
+// ───────────── Footer ─────────────
+function Footer({ narrow }) {
+  return (
+    <footer
+      style={{
+        position: "relative",
+        zIndex: 1,
+        borderTop: "1px solid rgba(9,30,66,0.07)",
+        padding: narrow ? "36px 20px 40px" : "48px 48px 52px",
+        maxWidth: 1100,
+        margin: "0 auto",
+        display: "flex",
+        flexDirection: narrow ? "column" : "row",
+        alignItems: narrow ? "flex-start" : "center",
+        justifyContent: "space-between",
+        gap: narrow ? 28 : 16,
+      }}
+    >
+      {/* Left: branding + copyright */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <LRMark size={22} />
+          <span
+            style={{
+              font: "700 14px/1 var(--cw-font-display)",
+              letterSpacing: "-0.02em",
+              color: "var(--cw-indigo-9)",
+            }}
+          >
+            Launch Radar
+          </span>
+        </div>
+        <span
+          style={{
+            font: "400 12px/1.4 var(--cw-font-body)",
+            color: "rgba(37,56,88,0.45)",
+            marginLeft: 30,
+          }}
+        >
+          © {new Date().getFullYear()} Cicily Wu · All rights reserved
+        </span>
+      </div>
+
+      {/* Right: contact */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: narrow ? "flex-start" : "flex-end",
+          gap: 10,
+        }}
+      >
+        <span
+          style={{
+            font: "500 11px/1 var(--cw-font-micro)",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "rgba(37,56,88,0.4)",
+          }}
+        >
+          Want to be added to the builder list?
+        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <a
+            href="https://www.linkedin.com/in/cicily-wu-749983177/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "1px solid rgba(9,30,66,0.10)",
+              background: "rgba(9,30,66,0.02)",
+              font: "500 12px/1 var(--cw-font-micro)",
+              color: "var(--cw-indigo-9)",
+              textDecoration: "none",
+              transition: "background .15s, border-color .15s",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "rgba(9,30,66,0.06)";
+              e.currentTarget.style.borderColor = "rgba(9,30,66,0.2)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "rgba(9,30,66,0.02)";
+              e.currentTarget.style.borderColor = "rgba(9,30,66,0.10)";
+            }}
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a
+            href="mailto:wucicily@gmail.com"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "1px solid rgba(9,30,66,0.10)",
+              background: "rgba(9,30,66,0.02)",
+              font: "500 12px/1 var(--cw-font-micro)",
+              color: "var(--cw-indigo-9)",
+              textDecoration: "none",
+              transition: "background .15s, border-color .15s",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "rgba(9,30,66,0.06)";
+              e.currentTarget.style.borderColor = "rgba(9,30,66,0.2)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "rgba(9,30,66,0.02)";
+              e.currentTarget.style.borderColor = "rgba(9,30,66,0.10)";
+            }}
+          >
+            <svg width="13" height="11" viewBox="0 0 16 12" fill="none">
+              <path d="M2 1.5h12v9H2v-9Zm0 0 6 5 6-5" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+            </svg>
+            wucicily@gmail.com
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 }
 
