@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(gunzip -c \"/Users/cwu/.claude/projects/-Users-cwu-Downloads-Launch-Radar-Landing-Page/e9aca9ef-2cdb-4807-a6c6-dd332083583d/tool-results/webfetch-1779652137550-zh76ar.bin\" > /tmp/design_output.txt 2>&1 && echo \"Success\" || echo \"Failed\")",
+      "Bash(tar xf *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

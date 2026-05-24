@@ -1,0 +1,202 @@
+/* Cloudways Copilot — Foundations
+ * Pulled from the "5 questions to ask when switching your web host" carousel
+ * and the Cloudways Copilot OG. Dark, Poppins-driven, signature gradient.
+ */
+
+/* ───────────── FONTS ─────────────
+ * Poppins is the entire system. Excon Medium shows up in micro-roles
+ * (the "Swipe →" pill, footer URLs). If Excon isn't licensed locally,
+ * fall back to Poppins — the carousel only uses Excon twice.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ───────── Brand palette ─────────
+   * The "deep space" navy is the carousel canvas. White is text on dark.
+   * Indigo-1187 is the body-text color when slides go light.
+   * The Q-badge purple is its own thing — used for the Q1..Q5 circles only.
+   */
+  --cw-ink:          #0B0A2A;   /* deepest navy, slide canvas */
+  --cw-ink-2:        #14123E;   /* lifted navy (cards on canvas) */
+  --cw-ink-3:        #1F1B58;   /* hovered / pressed surface */
+  --cw-indigo-9:     #091E42;   /* heading color when light */
+  --cw-indigo-8:     #253858;   /* body color when light */
+  --cw-indigo-1:     #F5F5FF;   /* tip-card fill, palest tint */
+  --cw-indigo-2:     #E9F1FF;   /* card border on light */
+  --cw-fog:          #FCFCFC;   /* OG canvas off-white */
+
+  --cw-white:        #FFFFFF;
+  --cw-white-90:     rgba(255,255,255,0.90);
+  --cw-white-60:     rgba(255,255,255,0.60);
+  --cw-white-40:     rgba(255,255,255,0.40);
+  --cw-white-15:     rgba(255,255,255,0.15);
+  --cw-white-08:     rgba(255,255,255,0.08);
+
+  --cw-text-on-dark:    #F4F5F7;
+  --cw-text-on-dark-2:  rgba(255,255,255,0.80);
+  --cw-text-on-light:   #253858;
+  --cw-heading-light:   #091E42;
+
+  /* Q-badge purple ramp (the Q1..Q5 chip) */
+  --cw-purple-100:   #EFE7FF;
+  --cw-purple-300:   #B49BFF;
+  --cw-purple-500:   #8852F8;   /* badge fill */
+  --cw-purple-600:   #7B55FC;
+  --cw-purple-700:   #6438D0;
+  --cw-purple-800:   #4B22A8;
+
+  /* Signature gradient stops — used as a fill, never as a background wash.
+   * Goes orange → pink → lilac → blue at the exact stops below.
+   */
+  --cw-grad-orange:  rgba(255,175,71,0.90);
+  --cw-grad-pink:    rgba(255,71,240,0.70);
+  --cw-grad-lilac:   rgb(210,133,255);
+  --cw-grad-blue:    rgba(10,93,255,0.90);
+
+  --cw-gradient: linear-gradient(
+    135deg,
+    var(--cw-grad-orange) 0%,
+    var(--cw-grad-pink)   33%,
+    var(--cw-grad-lilac)  54%,
+    var(--cw-grad-blue)   100%
+  );
+  /* Same gradient, ambient/radial form for slide backdrops */
+  --cw-gradient-glow: radial-gradient(
+    60% 50% at 50% 100%,
+    rgba(255,175,71,0.27) 0%,
+    rgba(255,71,240,0.21) 33%,
+    rgba(210,133,255,0.30) 54%,
+    rgba(10,93,255,0.27) 100%
+  );
+
+  /* ───────── Surface tokens ───────── */
+  --cw-tip-fill:    rgba(245,245,255,0.04);    /* lightbulb tip-box on dark */
+  --cw-tip-border:  rgba(180,155,255,0.55);
+  --cw-tip-blur:    blur(4px);
+
+  --cw-pill-fill:   linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(238,239,255,0.5) 100%);
+  --cw-pill-border: 3px solid var(--cw-white);
+
+  /* ───────── Radii ───────── */
+  --cw-r-xs:  6px;
+  --cw-r-sm:  10px;
+  --cw-r-md:  16px;
+  --cw-r-lg:  24px;
+  --cw-r-pill: 999px;
+
+  /* ───────── Spacing scale (8-base, 40 is the carousel rhythm) ───────── */
+  --cw-s-1: 4px;
+  --cw-s-2: 8px;
+  --cw-s-3: 12px;
+  --cw-s-4: 16px;
+  --cw-s-5: 24px;
+  --cw-s-6: 32px;
+  --cw-s-7: 40px;  /* carousel default gap */
+  --cw-s-8: 56px;
+  --cw-s-9: 80px;
+  --cw-s-10: 120px;
+
+  /* ───────── Shadow / elevation ─────────
+   * Cloudways carousels do almost no drop shadows — depth comes from
+   * gradient glows and frosted glass. These three are the full set.
+   */
+  --cw-elev-1:  0 1px 2px rgba(9,30,66,0.08);
+  --cw-elev-2:  0 8px 24px rgba(9,30,66,0.12);
+  --cw-elev-glow: 0 30px 120px -20px rgba(123,85,252,0.55);
+
+  /* ───────── Type tokens ─────────
+   * Poppins everywhere. Letter-spacing is tight (-0.03em) on display
+   * and section headings; body is at default tracking.
+   */
+  --cw-font-display: 'Poppins', system-ui, sans-serif;
+  --cw-font-body:    'Poppins', system-ui, sans-serif;
+  --cw-font-micro:   'Poppins', system-ui, sans-serif; /* Excon falls back here */
+
+  --cw-tracking-tight: -0.03em;
+  --cw-tracking-flat:   0;
+
+  /* Display — slide covers, "5 questions" */
+  --cw-fs-display:   108px;
+  --cw-lh-display:   1.30;
+  --cw-fw-display:   700;
+
+  /* H1 — slide question lines, OG hero */
+  --cw-fs-h1:        64px;
+  --cw-lh-h1:        1.05;
+  --cw-fw-h1:        700;
+
+  /* H2 — section sub-headlines */
+  --cw-fs-h2:        40px;
+  --cw-lh-h2:        1.40;
+  --cw-fw-h2:        500;
+
+  /* H3 — pull-quote / promo lines */
+  --cw-fs-h3:        32px;
+  --cw-lh-h3:        1.40;
+  --cw-fw-h3:        600;
+
+  /* Body */
+  --cw-fs-body:      24px;
+  --cw-lh-body:      1.50;
+  --cw-fw-body:      400;
+
+  /* Eyebrow / micro */
+  --cw-fs-eyebrow:   22px;
+  --cw-lh-eyebrow:   1.50;
+  --cw-fw-eyebrow:   500;
+}
+
+/* ───────── Semantic shortcuts ─────────
+ * Designs can pull these directly without remembering token names.
+ */
+.cw-on-dark { color: var(--cw-text-on-dark); background: var(--cw-ink); }
+.cw-on-light { color: var(--cw-text-on-light); background: var(--cw-fog); }
+
+.cw-h1, h1.cw {
+  font-family: var(--cw-font-display);
+  font-weight: var(--cw-fw-h1);
+  font-size: var(--cw-fs-h1);
+  line-height: var(--cw-lh-h1);
+  letter-spacing: var(--cw-tracking-tight);
+}
+.cw-h2, h2.cw {
+  font-family: var(--cw-font-display);
+  font-weight: var(--cw-fw-h2);
+  font-size: var(--cw-fs-h2);
+  line-height: var(--cw-lh-h2);
+  letter-spacing: var(--cw-tracking-tight);
+}
+.cw-h3, h3.cw {
+  font-family: var(--cw-font-display);
+  font-weight: var(--cw-fw-h3);
+  font-size: var(--cw-fs-h3);
+  line-height: var(--cw-lh-h3);
+}
+.cw-body, p.cw {
+  font-family: var(--cw-font-body);
+  font-weight: var(--cw-fw-body);
+  font-size: var(--cw-fs-body);
+  line-height: var(--cw-lh-body);
+}
+.cw-eyebrow {
+  font-family: var(--cw-font-micro);
+  font-weight: var(--cw-fw-eyebrow);
+  font-size: var(--cw-fs-eyebrow);
+  line-height: var(--cw-lh-eyebrow);
+}
+
+/* The signature: gradient text. Used on "5 questions", "Why it matters:",
+ * promo lines like "Get 30% off for 3 months". */
+.cw-gradient-text {
+  background: var(--cw-gradient);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+}
+
+/* Gradient as a fill for icons / checkmarks */
+.cw-gradient-fill {
+  background: var(--cw-gradient);
+  color: transparent;
+}
