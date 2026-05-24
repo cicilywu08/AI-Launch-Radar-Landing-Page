@@ -675,7 +675,7 @@ function Footer({ narrow }) {
             color: "rgba(37,56,88,0.4)",
           }}
         >
-          Know a builder I should track? Have feedback?
+          Suggest a builder · share feedback
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <a
