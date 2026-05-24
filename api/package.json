@@ -1,0 +1,9 @@
+{
+  "name": "ai-daily-radar-api",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

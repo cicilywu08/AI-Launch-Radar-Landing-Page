@@ -274,14 +274,26 @@ function Dot() {
 function SubscribeForm({ ctaText = "Subscribe" }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle");
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setState("error");
       return;
     }
     setState("sending");
-    setTimeout(() => setState("done"), 700);
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim().toLowerCase() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Subscribe failed");
+      setState("done");
+    } catch (err) {
+      console.error(err);
+      setState("error");
+    }
   };
   const done = state === "done";
 

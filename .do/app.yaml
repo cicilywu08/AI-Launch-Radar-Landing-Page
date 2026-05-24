@@ -1,0 +1,46 @@
+name: ai-launch-radar
+region: nyc
+
+# Static landing + /api subscribe service
+# Set RESEND_API_KEY + RESEND_SEGMENT_ID on the api component in DO dashboard.
+
+static_sites:
+  - name: web
+    github:
+      repo: cicilywu08/AI-Launch-Radar-Landing-Page
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    catchall_document: index.html
+
+services:
+  - name: api
+    github:
+      repo: cicilywu08/AI-Launch-Radar-Landing-Page
+      branch: main
+      deploy_on_push: true
+    source_dir: /api
+    run_command: node server.js
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    envs:
+      - key: RESEND_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: RESEND_SEGMENT_ID
+        scope: RUN_TIME
+        type: SECRET
+
+ingress:
+  rules:
+    - component:
+        name: api
+      match:
+        path:
+          prefix: /api
+    - component:
+        name: web
+      match:
+        path:
+          prefix: /
