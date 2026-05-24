@@ -282,7 +282,7 @@ function SubscribeForm({ ctaText = "Subscribe" }) {
     }
     setState("sending");
     try {
-      const res = await fetch("https://ai-launch-radar-pmdcw.ondigitalocean.app/subscribe", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email.trim().toLowerCase() }),

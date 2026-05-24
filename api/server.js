@@ -96,7 +96,8 @@ async function handleSubscribe(req, res) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
 
-  if (req.method === "GET" && url.pathname === "/api/health") {
+  // DO ingress strips the /api prefix before forwarding (e.g. /api/health → /health).
+  if (req.method === "GET" && (url.pathname === "/health" || url.pathname === "/api/health")) {
     return json(res, 200, {
       ok: true,
       resend: Boolean(RESEND_API_KEY),
@@ -104,7 +105,10 @@ const server = http.createServer(async (req, res) => {
     });
   }
 
-  if (req.method === "POST" && url.pathname === "/api/subscribe") {
+  if (
+    req.method === "POST" &&
+    (url.pathname === "/subscribe" || url.pathname === "/api/subscribe")
+  ) {
     return handleSubscribe(req, res);
   }
 
