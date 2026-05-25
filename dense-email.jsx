@@ -133,11 +133,11 @@ function LaunchRadarDense({ data, mobile = false }) {
         >
           <Stat n={stats.builders} label="builders" />
           <Sep />
-          <Stat n={stats.posts} label="posts" />
+          <Stat n={stats.posts} label="X posts" />
           <Sep />
-          <Stat n={stats.github} label="GH" />
+          <Stat n={stats.github} label="GitHub" />
           <Sep />
-          <Stat n={stats.hn} label="HN" />
+          <Stat n={stats.hn} label="Hacker News" />
           <Sep />
           <Stat n={stats.qualified} label="qualified" emphasis />
           {!mobile && <span style={{ flex: 1 }} />}
@@ -252,7 +252,7 @@ function LaunchRadarDense({ data, mobile = false }) {
               marginTop: 2,
             }}
           >
-            {stats.builders} active builders · {stats.posts} posts ·{" "}
+            {stats.builders} active builders · {stats.posts} X posts ·{" "}
             {stats.qualified} qualified
           </div>
         </div>

@@ -83,20 +83,24 @@ async function handleSubscribe(req, res) {
     return json(res, 400, { error: "Invalid email address." });
   }
 
-  const result = await resendCreateContact(email);
-  if (!result.ok) {
-    console.error("Resend contact error:", result.status, result.message);
+  try {
+    const result = await resendCreateContact(email);
+    if (!result.ok) {
+      console.error("Resend contact error:", result.status, result.message);
+      return json(res, 502, { error: "Could not subscribe. Please try again." });
+    }
+
+    console.log(`Subscribed ${email}${result.existing ? " (already on list)" : ""}`);
+    return json(res, 200, { ok: true, email, existing: result.existing });
+  } catch (err) {
+    console.error("Subscribe handler error:", err);
     return json(res, 502, { error: "Could not subscribe. Please try again." });
   }
-
-  console.log(`Subscribed ${email}${result.existing ? " (already on list)" : ""}`);
-  return json(res, 200, { ok: true, email, existing: result.existing });
 }
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
 
-  // DO ingress strips the /api prefix before forwarding (e.g. /api/health → /health).
   if (req.method === "GET" && (url.pathname === "/health" || url.pathname === "/api/health")) {
     return json(res, 200, {
       ok: true,
